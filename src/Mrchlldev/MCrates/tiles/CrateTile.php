@@ -23,6 +23,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\world\particle\FloatingTextParticle;
 use pocketmine\world\World;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\network\mcpe\convert\TypeConverter;
 
 class CrateTile extends Chest
 {
@@ -157,9 +158,9 @@ class CrateTile extends Chest
         return $this->currentPlayer;
     }
 
-    public function addAdditionalSpawnData(CompoundTag $nbt): void
+    public function addAdditionalSpawnData(CompoundTag $nbt, TypeConverter $typeConverter): void
     {
-        parent::addAdditionalSpawnData($nbt);
+        parent::addAdditionalSpawnData($nbt, $typeConverter);
         $nbt->setString(self::TAG_ID, "Chest");
         $nbt->setString(self::TAG_CUSTOM_NAME, ($this->crateType === null ? "Unknown" : $this->crateType->getName()) . " Crate");
     }
